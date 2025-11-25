@@ -1,5 +1,6 @@
-import Image from 'next/image';
-import tecnologiasJson from '@/app/data/tecnologias.json';
+import Link from "next/link";
+import TecnologiaCard from "@/components/MagiaDoJSX/TecnologiaCard";
+import tecnologiasJson from "@/app/data/tecnologias.json";
 
 export default function Page() {
   const tecnologias = JSON.parse(JSON.stringify(tecnologiasJson));
@@ -9,22 +10,22 @@ export default function Page() {
       <h2 className="text-2xl font-bold">Tecnologias Exploradas</h2>
 
       <div className="grid gap-6 md:grid-cols-3">
-        {tecnologias.map((tec: any) => (
-          <div key={tec.title} className="border rounded-2xl p-4 shadow-sm flex flex-col items-center gap-3">
+        {tecnologias.map((tec: any, index: number) => (
+          <Link
+            href={`/tecnologia/${index}`}
+            key={tec.title}
+            className="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition flex flex-col items-center"
+          >
+            <TecnologiaCard title={tec.title} image={tec.image} />
 
-            <Image
-              src={`/tecnologias/${tec.image}`}
-              alt={`Logotipo de ${tec.title}`}
-              width={200}
-              height={200}
-            />
+            <p className="text-sm text-center text-gray-700 mt-3">
+              {tec.description}
+            </p>
 
-            <h3 className="text-lg font-semibold">{tec.title}</h3>
-
-            <p className="text-sm text-center text-gray-700">{tec.description}</p>
-
-            <p className="text-yellow-500 font-semibold">Rating: {tec.rating}</p>
-          </div>
+            <p className="text-yellow-500 font-semibold">
+              Rating: {tec.rating}
+            </p>
+          </Link>
         ))}
       </div>
     </div>

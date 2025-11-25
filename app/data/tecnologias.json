@@ -52,5 +52,11 @@
     "image": "vercel.svg",
     "description": "Plataforma para deploy rápido de aplicações front-end.",
     "rating": 5
+  },
+  {
+    "title": "TypeScript",
+    "image": "typescript.svg",
+    "description": "Superset do JavaScript com tipagem estática.",
+    "rating": 4
   }
 ]
