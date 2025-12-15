@@ -1,16 +1,21 @@
 import Link from "next/link";
 
-interface CaracteristicaProps {
-  text: string;
+export default function Caracteristica({
+  caracteristica,
+  index,
+}: {
+  caracteristica: string;
   index: number;
-}
-
-export default function Caracteristica({ text, index }: CaracteristicaProps) {
+}) {
   return (
-    <li className="text-blue-700 underline hover:text-blue-900">
-      <Link href={`/caracteristica/${index}`}>
-        {text}
-      </Link>
-    </li>
+    <Link
+      href={`/caracteristicas/${index}`}
+      className="block rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 hover:bg-zinc-700 transition"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <span className="font-semibold">{caracteristica}</span>
+        <span className="text-sm opacity-70">Ver →</span>
+      </div>
+    </Link>
   );
 }

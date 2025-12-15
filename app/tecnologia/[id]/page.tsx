@@ -1,27 +1,30 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import tecnologiasJson from "@/app/data/tecnologias.json";
 import TecnologiaDetailsCard from "@/components/MagiaDoJSX/TecnologiaDetailsCard";
-import Link from "next/link";
 
-export default function TecnologiaPage({ params }: { params: { id: string } }) {
-  const id = parseInt(params.id);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const idx = Number(id);
 
-  const tecnologias = JSON.parse(JSON.stringify(tecnologiasJson));
+  const tecnologias = tecnologiasJson as any[];
 
-  const tecnologia = tecnologias[id];
-
-  if (!tecnologia) {
-    return <p>Tecnologia não encontrada.</p>;
+  if (!Number.isInteger(idx) || idx < 0 || idx >= tecnologias.length) {
+    notFound();
   }
+
+  const tecnologia = tecnologias[idx];
 
   return (
     <div className="space-y-6">
       <TecnologiaDetailsCard tecnologia={tecnologia} />
 
-      <Link
-        href="/tecnologias"
-        className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-      >
-        ← Voltar às tecnologias
+      <Link href="/tecnologias" className="underline">
+        Voltar
       </Link>
     </div>
   );

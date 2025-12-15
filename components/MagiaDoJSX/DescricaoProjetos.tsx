@@ -10,16 +10,16 @@ export default function DescricaoProjetos() {
 
       <ul className="list-disc list-inside">
         <Projeto
-          nome="Loja de Produtos"
-          url="https://teu-username.github.io/nome-do-projeto"
+          nome="Primeiro site com HTML e CSS"
+          url="https://a22404033miguellopes.github.io/lab3/index.html"
         />
         <Projeto
           nome="Site Interativo JS"
-          url="https://teu-username.github.io/outro-projeto"
+          url="https://a22404033miguellopes.github.io/lab4/index.html"
         />
         <Projeto
-          nome="GitHub Pages"
-          url="https://teu-username.github.io"
+          nome="Loja de Produtos"
+          url="https://a22404033miguellopes.github.io/lab7/index.html"
         />
       </ul>
     </section>

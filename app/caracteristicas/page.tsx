@@ -1,8 +1,6 @@
-'use client';
-
 import Caracteristica from "@/components/MagiaDoJSX/Caracteristica";
 
-export default function CaracteristicasPage() {
+export default function Page() {
   const caracteristicas = [
     "JSX, sintaxe que mistura HTML e JS.",
     "Componentes, funções que retornam JSX.",
@@ -11,18 +9,27 @@ export default function CaracteristicasPage() {
     "Hooks: useState, useEffect e useSWR.",
     "Renderização Rápida e SEO Friendly.",
     "TypeScript Seguro e Escalável.",
-    "Comunidade Ativa e Popularidade."
+    "Comunidade Ativa e Popularidade.",
   ];
 
   return (
-    <>
-      <h2 className="text-2xl font-bold mb-4">Características do React e Next.js</h2>
+    <div className="rounded-2xl bg-zinc-800 p-8 space-y-6">
+      <div className="space-y-2">
+        <h2 className="text-3xl font-bold text-white">
+          Características do React e Next.js
+        </h2>
+        <p className="text-white">
+          Clica numa característica para veres o detalhe.
+        </p>
+      </div>
 
-      <ul className="list-disc list-inside space-y-2">
-        {caracteristicas.map((car, index) => (
-          <Caracteristica key={index} text={car} index={index} />
+      <ul className="space-y-3">
+        {caracteristicas.map((c, i) => (
+          <li key={i}>
+            <Caracteristica caracteristica={c} index={i} />
+          </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

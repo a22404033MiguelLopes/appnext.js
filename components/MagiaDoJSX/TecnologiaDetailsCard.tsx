@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ContadorPersonalizado from "@/components/MagiaDoJSX/ContadorPersonalizado";
 
 interface TecnologiaDetailsCardProps {
   tecnologia: {
@@ -26,6 +27,8 @@ export default function TecnologiaDetailsCard({ tecnologia }: TecnologiaDetailsC
       <p className="text-yellow-500 font-semibold">
         Rating: {tecnologia.rating}
       </p>
+
+      <ContadorPersonalizado title={tecnologia.title} />
     </div>
   );
 }

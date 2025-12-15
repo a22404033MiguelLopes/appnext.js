@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import './globals.css';
 import Link from "next/link";
+import Relogio from "@/components/MagiaDoJSX/Relogio";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col justify-start gap-4 p-20 items-center min-h-screen">
+      <body className="flex flex-col justify-start bg-zinc-900 text-white gap-4 p-20 items-center min-h-screen">
 
         <header className="flex flex-col items-center gap-4">
           <h1 className="text-3xl font-bold">React & Next.js</h1>
@@ -38,14 +40,20 @@ export default function RootLayout({
             <Link href="/caracteristicas">Características</Link>
             <Link href="/tecnologias">Tecnologias</Link>
             <Link href="/projetos">Projetos</Link>
+            <Link href="/contador">Contador</Link>
+            <Link href="/input">Input</Link>
+            <Link href="/produtos">Produtos</Link>
           </nav>
         </header>
 
-        <main className="bg-blue-200 p-5 rounded-2xl max-w-2xl min-h-[70vh]">
+        <main className="bg-zinc-800 p-5 rounded-2xl max-w-2xl min-h-[70vh]">
           {children}
         </main>
 
-        <footer>DIW - {data.getFullYear()}</footer>
+        <footer className="flex items-center gap-4 mt-4 text-sm text-gray-800">
+          <span>DIW - {data.getFullYear()}</span>
+          <Relogio />
+        </footer>
 
       </body>
     </html>

@@ -3,7 +3,7 @@ import TecnologiaCard from "@/components/MagiaDoJSX/TecnologiaCard";
 import tecnologiasJson from "@/app/data/tecnologias.json";
 
 export default function Page() {
-  const tecnologias = JSON.parse(JSON.stringify(tecnologiasJson));
+const tecnologias = tecnologiasJson;
 
   return (
     <div className="space-y-6">
