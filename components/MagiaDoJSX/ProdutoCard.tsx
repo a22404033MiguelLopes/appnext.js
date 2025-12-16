@@ -8,9 +8,10 @@ type Props = {
   produto: Product;
   onAddToCart?: (p: Product) => void;
   onRemoveFromCart?: (p: Product) => void;
+  onInfo?: (p: Product) => void;
 };
 
-export default function ProdutoCard({ produto, onAddToCart, onRemoveFromCart }: Props) {
+export default function ProdutoCard({ produto, onAddToCart, onRemoveFromCart, onInfo }: Props) {
   const imageUrl = produto.image?.startsWith("http")
     ? produto.image
     : `${API_DOMAIN}${produto.image}`;
@@ -35,10 +36,12 @@ export default function ProdutoCard({ produto, onAddToCart, onRemoveFromCart }: 
       <div className="mt-4 flex flex-wrap gap-2">
         <Link
           href={`/produtos/${produto.id}`}
+          onClick={() => onInfo?.(produto)}
           className="inline-flex items-center justify-center rounded-lg border px-3 py-2 text-sm hover:bg-zinc-600 transition"
         >
           +info
         </Link>
+
 
         {onAddToCart && (
           <button

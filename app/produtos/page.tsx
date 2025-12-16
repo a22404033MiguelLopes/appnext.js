@@ -5,6 +5,7 @@ import useSWR from "swr";
 import type { Product } from "@/models/interfaces";
 import { fetcher } from "@/lib/fetcher";
 import ProdutoCard from "@/components/MagiaDoJSX/ProdutoCard";
+import { useProdutosRecentes } from "@/components/MagiaDoJSX/ProdutosRecentes";
 
 const API_URL = "https://deisishop.pythonanywhere.com/products/";
 const CART_KEY = "cart";
@@ -34,6 +35,17 @@ export default function Page() {
   const [buying, setBuying] = useState(false);
   const [buyResponse, setBuyResponse] = useState<any>(null);
   const [buyError, setBuyError] = useState<string | null>(null);
+
+  const { recentes, adicionarProduto } = useProdutosRecentes();
+
+  const handleInfo = (p: Product) => {
+    adicionarProduto(String(p.id));
+  };
+
+  const recentesProdutos = useMemo(() => {
+    if (!data) return [];
+    return recentes.map((id) => data.find((p) => String(p.id) === String(id))).filter(Boolean) as Product[];
+  }, [recentes, data]);
 
   useEffect(() => {
     try {
@@ -175,6 +187,23 @@ export default function Page() {
         </div>
       </div>
 
+      {recentesProdutos.length > 0 && (
+        <div className="space-y-3">
+          <h3 className="text-xl font-bold">Produtos recentemente vistos</h3>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {recentesProdutos.map((produto) => (
+              <div key={produto.id} className="w-48">
+                <ProdutoCard
+                  produto={produto}
+                  onAddToCart={addToCart}
+                  onInfo={handleInfo}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-3">
           <p className="text-sm text-zinc-300">
@@ -187,6 +216,7 @@ export default function Page() {
                 key={produto.id}
                 produto={produto}
                 onAddToCart={addToCart}
+                onInfo={handleInfo}
               />
             ))}
           </div>
